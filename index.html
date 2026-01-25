@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Косметолог в Щёлково — эстетическая косметология И. Фект</title>
+  <meta name="description" content="Эстетическая косметология в Щёлково. Чистка лица, пилинги, массаж, уход за кожей. Кабинет И. Фект — запись по телефону и в Telegram.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
+  <link href="./output.css" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #c48a6a;
+      --accent-dark: #8b5c44;
+      --cream: #f7efe9;
+      --ink: #1f1b17;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+    }
+    .font-display { font-family: 'Marcellus', serif; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 700ms ease, transform 700ms ease; }
+    .reveal-visible { opacity: 1; transform: translateY(0); }
+    .page-overlay { pointer-events: none; opacity: 0; transition: opacity 350ms ease; }
+    .page-overlay.is-active { opacity: 1; }
+    section[id] { scroll-margin-top: var(--header-offset, 96px); }
+    .before-after {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      background: #f7efe9;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      --split: 50%;
+    }
+    .before-after__image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .before-after__overlay {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      clip-path: inset(0 calc(100% - var(--split)) 0 0);
+    }
+    .before-after__handle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      border-left: 2px solid rgba(255, 255, 255, 0.95);
+    }
+    .before-after__handle::after {
+      content: '';
+      position: absolute;
+      left: -18px;
+      top: 50%;
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background: #2a211b;
+      border: 2px solid #ffffff;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+      transform: translateY(-50%);
+    }
+    .before-after__range {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: ew-resize;
+    }
+    .before-after__label {
+      position: absolute;
+      top: 16px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.85);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #5b4a40;
+      transition: opacity 200ms ease, transform 200ms ease;
+    }
+    .before-after__label--before { left: 16px; }
+    .before-after__label--after { right: 16px; }
+    .before-after__label.is-hidden { opacity: 0; transform: translateY(-6px); pointer-events: none; }
+  </style>
+</head>
+<body class="bg-[#fbf7f4] text-[#231f1c]">
+  <div class="fixed inset-0 -z-10">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(196,138,106,0.25),transparent_55%),radial-gradient(circle_at_20%_80%,_rgba(143,175,160,0.25),transparent_50%),linear-gradient(120deg,_#fff9f6_0%,_#f7efe9_60%,_#ffffff_100%)]"></div>
+    <div class="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-[rgba(196,138,106,0.18)] blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-[rgba(140,170,160,0.2)] blur-3xl"></div>
+  </div>
+
+  <div id="pageOverlay" class="page-overlay fixed inset-0 z-40 bg-[#f9f3ef]"></div>
+
+  <header id="siteHeader" class="sticky top-0 z-30 border-b border-white/70 bg-white/70 backdrop-blur">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <a href="#hero" class="font-display text-2xl tracking-wide text-[#2a211b]">
+        И. Фект
+      </a>
+      <nav class="hidden items-center gap-8 text-sm font-medium text-[#5b4a40] lg:flex">
+        <a href="#services" data-nav class="js-transition transition hover:text-[#2a211b]">Услуги</a>
+        <a href="#about" data-nav class="js-transition transition hover:text-[#2a211b]">О кабинете</a>
+        <a href="#results" data-nav class="js-transition transition hover:text-[#2a211b]">Процедуры</a>
+        <a href="#pricing" data-nav class="js-transition transition hover:text-[#2a211b]">Цены</a>
+        <a href="#contacts" data-nav class="js-transition transition hover:text-[#2a211b]">Контакты</a>
+      </nav>
+      <div class="hidden items-center gap-3 lg:flex">
+        <a href="tel:+79197258054" class="rounded-full border border-[#d8b8a6] px-4 py-2 text-sm font-semibold text-[#6c4f3e] transition hover:border-[#c48a6a] hover:text-[#2a211b]">Позвонить</a>
+        <a href="https://t.me/Innalekss" class="rounded-full bg-[#c48a6a] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#a56e52]">Написать в Telegram</a>
+      </div>
+      <button id="menuToggle" class="lg:hidden" aria-label="Открыть меню">
+        <span class="block h-0.5 w-6 bg-[#6c4f3e]"></span>
+        <span class="mt-1 block h-0.5 w-6 bg-[#6c4f3e]"></span>
+        <span class="mt-1 block h-0.5 w-6 bg-[#6c4f3e]"></span>
+      </button>
+    </div>
+    <div id="mobileMenu" class="hidden border-t border-white/70 bg-white/90 px-6 py-4 lg:hidden">
+      <div class="flex flex-col gap-3 text-sm font-medium text-[#5b4a40]">
+        <a href="#services" class="js-transition">Услуги</a>
+        <a href="#about" class="js-transition">О кабинете</a>
+        <a href="#results" class="js-transition">Процедуры</a>
+        <a href="#pricing" class="js-transition">Цены</a>
+        <a href="#contacts" class="js-transition">Контакты</a>
+        <div class="mt-3 flex flex-col gap-2">
+          <a href="tel:+79197258054" class="rounded-full border border-[#d8b8a6] px-4 py-2 text-center font-semibold text-[#6c4f3e]">Позвонить</a>
+          <a href="https://t.me/Innalekss" class="rounded-full bg-[#c48a6a] px-4 py-2 text-center font-semibold text-white">Написать в Telegram</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="relative overflow-hidden">
+      <div class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-6 pb-20 pt-14 lg:grid-cols-[1.1fr_0.9fr] lg:pb-28 lg:pt-20">
+        <div class="space-y-6">
+          <p class="text-sm uppercase tracking-[0.3em] text-[#8b6b5a]">Запишитесь на консультацию сегодня</p>
+          <h1 class="font-display text-3xl leading-tight text-[#2a211b] sm:text-4xl lg:text-5xl">
+            Эстетическая косметология в Щёлково
+          </h1>
+          <p class="text-lg text-[#5b4a40]">
+            Бережные процедуры, персональный подход и видимые результаты для вашей кожи.
+          </p>
+          <div class="flex flex-col gap-3 sm:flex-row">
+            <a href="tel:+79197258054" class="js-transition inline-flex items-center justify-center rounded-full bg-[#2a211b] px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-[#1a1410]">Записаться по телефону</a>
+            <a href="https://t.me/Innalekss" class="inline-flex items-center justify-center rounded-full border border-[#2a211b] px-6 py-3 text-sm font-semibold uppercase tracking-wider text-[#2a211b] transition hover:bg-[#2a211b] hover:text-white">Написать в Telegram</a>
+          </div>
+          <div class="flex flex-wrap gap-4 text-sm text-[#6c4f3e]">
+            <span class="rounded-full bg-white/70 px-4 py-2">Бесплатная оценка типа кожи</span>
+            <span class="rounded-full bg-white/70 px-4 py-2">Работа с чувствительной кожей</span>
+            <span class="rounded-full bg-white/70 px-4 py-2">Комфортные процедуры</span>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="absolute -top-6 right-6 h-20 w-20 rounded-full bg-[#c48a6a] opacity-70"></div>
+          <div class="absolute -bottom-10 left-0 h-24 w-24 rounded-full bg-[#b7c8be] opacity-70"></div>
+          <div class="rounded-[32px] border border-white/80 bg-white/80 p-8 shadow-[0_35px_80px_-50px_rgba(0,0,0,0.25)] backdrop-blur">
+            <h2 class="font-display text-2xl text-[#2a211b]">Ваш путь к сияющей коже</h2>
+            <p class="mt-4 text-sm text-[#5b4a40]">
+              Авторские программы ухода: очищение, восстановление, релаксация. Внимание к деталям и атмосфера спокойствия.
+            </p>
+            <div class="mt-6 grid gap-4 text-sm text-[#5b4a40]">
+              <div class="flex items-center gap-3">
+                <span class="flex h-10 w-10 items-center justify-center rounded-full bg-[#f2e6de]">01</span>
+                <span>Консультация и диагностика кожи</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="flex h-10 w-10 items-center justify-center rounded-full bg-[#f2e6de]">02</span>
+                <span>Подбор процедуры и домашнего ухода</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="flex h-10 w-10 items-center justify-center rounded-full bg-[#f2e6de]">03</span>
+                <span>Мягкий контроль динамики и результата</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-white/70 bg-white/70 py-16">
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="reveal" data-reveal>
+          <p class="text-sm uppercase tracking-[0.3em] text-[#8b6b5a]">До и после</p>
+          <h2 class="font-display mt-3 text-3xl text-[#2a211b] sm:text-4xl">Сравните результат процедур</h2>
+        </div>
+        <div class="mt-10">
+          <div class="before-after h-[320px] sm:h-[420px] lg:h-[480px]" data-before-after>
+            <img src="./img/after.png" alt="Кожа после процедуры" class="before-after__image">
+            <div class="before-after__overlay" data-before-after-overlay>
+              <img src="./img/before.png" alt="Кожа до процедуры" class="before-after__image">
+            </div>
+            <span class="before-after__label before-after__label--before" data-before-after-label>ДО</span>
+            <span class="before-after__label before-after__label--after" data-before-after-label>ПОСЛЕ</span>
+            <div class="before-after__handle" data-before-after-handle style="left: 50%;"></div>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="50"
+              class="before-after__range"
+              data-before-after-range
+              aria-label="Передвиньте ползунок, чтобы сравнить до и после"
+            >
+          </div>
+          <p class="mt-4 text-sm text-[#5b4a40]">Передвигайте ползунок, чтобы увидеть разницу и качество результата.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="border-t border-white/70 bg-white/70 py-16">
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="reveal" data-reveal>
+          <p class="text-sm uppercase tracking-[0.3em] text-[#8b6b5a]">Основные услуги</p>
+          <h2 class="font-display mt-3 text-3xl text-[#2a211b] sm:text-4xl">Уходовые процедуры с эффектом и комфортом</h2>
+        </div>
+        <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <article class="reveal rounded-3xl border border-white/80 bg-white/80 p-6 shadow-sm" data-reveal>
+            <h3 class="font-display text-xl text-[#2a211b]">Чистка лица</h3>
+            <p class="mt-3 text-sm text-[#5b4a40]">Глубокое очищение пор и обновление кожи с учетом индивидуальных особенностей.</p>
+            <p class="mt-4 text-lg font-semibold text-[#8b5c44]">от 2 500 ₽</p>
+          </article>
+          <article class="reveal rounded-3xl border border-white/80 bg-white/80 p-6 shadow-sm" data-reveal>
+            <h3 class="font-display text-xl text-[#2a211b]">Маски</h3>
+            <p class="mt-3 text-sm text-[#5b4a40]">Питание, увлажнение и сияние. Подбор по типу кожи и сезону.</p>
+            <p class="mt-4 text-lg font-semibold text-[#8b5c44]">от 1 200 ₽</p>
+          </article>
+          <article class="reveal rounded-3xl border border-white/80 bg-white/80 p-6 shadow-sm" data-reveal>
+            <h3 class="font-display text-xl text-[#2a211b]">Пилинги</h3>
+            <p class="mt-3 text-sm text-[#5b4a40]">Деликатное обновление кожи, выравнивание тона, работа с текстурой.</p>
+            <p class="mt-4 text-lg font-semibold text-[#8b5c44]">от 1 800 ₽</p>
+          </article>
+          <article class="reveal rounded-3xl border border-white/80 bg-white/80 p-6 shadow-sm" data-reveal>
+            <h3 class="font-display text-xl text-[#2a211b]">Массаж лица</h3>
+            <p class="mt-3 text-sm text-[#5b4a40]">Расслабление, улучшение микроциркуляции и тонуса кожи.</p>
+            <p class="mt-4 text-lg font-semibold text-[#8b5c44]">от 1 600 ₽</p>
+          </article>
+          <article class="reveal rounded-3xl border border-white/80 bg-white/80 p-6 shadow-sm" data-reveal>
+            <h3 class="font-display text-xl text-[#2a211b]">Оценка кожи</h3>
+            <p class="mt-3 text-sm text-[#5b4a40]">Диагностика типа и потребностей кожи с рекомендациями ухода.</p>
+            <p class="mt-4 text-lg font-semibold text-[#8b5c44]">Бесплатно</p>
+          </article>
+          <article class="reveal rounded-3xl border border-white/80 bg-white/80 p-6 shadow-sm" data-reveal>
+            <h3 class="font-display text-xl text-[#2a211b]">Комбо-программы</h3>
+            <p class="mt-3 text-sm text-[#5b4a40]">Сочетание чистки, маски и массажа для устойчивого результата.</p>
+            <p class="mt-4 text-lg font-semibold text-[#8b5c44]">от 3 500 ₽</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="py-16">
+      <div class="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[0.9fr_1.1fr]">
+        <div class="reveal rounded-[32px] border border-white/70 bg-white/70 p-8" data-reveal>
+          <h2 class="font-display text-3xl text-[#2a211b]">Кабинет «И. Фект»</h2>
+          <p class="mt-4 text-sm text-[#5b4a40]">
+            Атмосфера спокойствия, стерильность и комфорт. Процедуры подбираются под ваш ритм, учитывая сезонные потребности кожи.
+          </p>
+          <div class="mt-6 space-y-4 text-sm text-[#5b4a40]">
+            <div class="flex items-start gap-3">
+              <span class="mt-1 h-2 w-2 rounded-full bg-[#c48a6a]"></span>
+              <span>Персональный уход и сопровождение между посещениями.</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="mt-1 h-2 w-2 rounded-full bg-[#c48a6a]"></span>
+              <span>Подбор профессиональной косметики без навязанных продаж.</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="mt-1 h-2 w-2 rounded-full bg-[#c48a6a]"></span>
+              <span>Комфортная атмосфера для восстановления и релаксации.</span>
+            </div>
+          </div>
+        </div>
+        <div class="reveal space-y-6" data-reveal>
+          <div class="rounded-[32px] border border-white/70 bg-[#2a211b] p-8 text-white">
+            <h3 class="font-display text-2xl">Косметолог Фаркова Инна Алексеевна</h3>
+            <p class="mt-3 text-sm text-white/80">
+              Эксперт по эстетическому уходу за кожей, автор программ восстановления, мягкого омоложения и работы с чувствительной кожей.
+            </p>
+          </div>
+          <div class="rounded-[32px] border border-white/70 bg-white/80 p-8">
+            <p class="text-sm text-[#5b4a40]">
+              Каждая процедура сопровождается рекомендациями по домашнему уходу, чтобы эффект сохранялся дольше.
+            </p>
+            <div class="mt-5 flex flex-wrap gap-3 text-xs uppercase tracking-[0.3em] text-[#8b6b5a]">
+              <span class="rounded-full bg-[#f2e6de] px-3 py-1">Консультация</span>
+              <span class="rounded-full bg-[#f2e6de] px-3 py-1">Релакс</span>
+              <span class="rounded-full bg-[#f2e6de] px-3 py-1">Результат</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="results" class="border-t border-white/70 bg-white/70 py-16">
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="reveal" data-reveal>
+          <p class="text-sm uppercase tracking-[0.3em] text-[#8b6b5a]">Как проходит</p>
+          <h2 class="font-display mt-3 text-3xl text-[#2a211b] sm:text-4xl">Процедуры, которые вы почувствуете сразу</h2>
+        </div>
+        <div class="mt-10 grid gap-6 lg:grid-cols-3">
+          <div class="reveal rounded-[28px] border border-white/80 bg-white/80 p-6" data-reveal>
+            <h3 class="font-display text-xl text-[#2a211b]">Нежное очищение</h3>
+            <p class="mt-3 text-sm text-[#5b4a40]">Снимаем стресс кожи, очищаем и подготавливаем к активным компонентам.</p>
+          </div>
+          <div class="reveal rounded-[28px] border border-white/80 bg-white/80 p-6" data-reveal>
+            <h3 class="font-display text-xl text-[#2a211b]">Глубокое питание</h3>
+            <p class="mt-3 text-sm text-[#5b4a40]">Маски и сыворотки усиливают сияние и барьерные функции.</p>
+          </div>
+          <div class="reveal rounded-[28px] border border-white/80 bg-white/80 p-6" data-reveal>
+            <h3 class="font-display text-xl text-[#2a211b]">Массаж и лимфодренаж</h3>
+            <p class="mt-3 text-sm text-[#5b4a40]">Освобождаем мышцы лица от напряжения, улучшаем тонус.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="py-16">
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="reveal" data-reveal>
+          <p class="text-sm uppercase tracking-[0.3em] text-[#8b6b5a]">Стоимость</p>
+          <h2 class="font-display mt-3 text-3xl text-[#2a211b] sm:text-4xl">Цены</h2>
+        </div>
+        <div class="mt-10 grid gap-6 lg:grid-cols-2">
+          <div class="reveal rounded-[28px] border border-white/70 bg-white/80 p-8" data-reveal>
+            <div class="flex items-center justify-between border-b border-[#ead8cd] pb-4 text-sm text-[#5b4a40]">
+              <span>Чистка лица</span>
+              <span class="font-semibold text-[#8b5c44]">2 500 ₽</span>
+            </div>
+            <div class="mt-4 flex items-center justify-between border-b border-[#ead8cd] pb-4 text-sm text-[#5b4a40]">
+              <span>Пилинг + маска</span>
+              <span class="font-semibold text-[#8b5c44]">1 800 ₽</span>
+            </div>
+            <div class="mt-4 flex items-center justify-between border-b border-[#ead8cd] pb-4 text-sm text-[#5b4a40]">
+              <span>Массаж лица</span>
+              <span class="font-semibold text-[#8b5c44]">1 600 ₽</span>
+            </div>
+            <div class="mt-4 flex items-center justify-between text-sm text-[#5b4a40]">
+              <span>Комбо-программа</span>
+              <span class="font-semibold text-[#8b5c44]">3 500 ₽</span>
+            </div>
+          </div>
+          <div class="reveal rounded-[28px] border border-white/70 bg-[#2a211b] p-8 text-white" data-reveal>
+            <h3 class="font-display text-2xl">Запишитесь на бесплатную оценку кожи</h3>
+            <p class="mt-3 text-sm text-white/80">Подберем оптимальную схему ухода и поддержим результат между визитами.</p>
+            <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+              <a href="tel:+79197258054" class="inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold uppercase tracking-wider text-[#2a211b]">Позвонить</a>
+              <a href="https://t.me/Innalekss" class="inline-flex items-center justify-center rounded-full border border-white/70 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white">Написать в Telegram</a>
+            </div>
+            <p class="mt-5 text-xs uppercase tracking-[0.3em] text-white/60">Ответим в течение дня</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-white/70 bg-white/70 py-16">
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="reveal rounded-[32px] border border-white/70 bg-white/80 p-10" data-reveal>
+          <div class="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+            <div>
+              <h2 class="mt-12 font-display text-4xl text-[#2a211b]">Запишитесь к нам</h2>
+              <p class="mt-3 text-m text-[#5b4a40]">Выберите удобный канал связи — и мы подберем время визита.</p>
+            </div>
+            <div class="flex flex-col gap-3 text-sm">
+              <a href="tel:+79197258054" class="flex items-center justify-between rounded-2xl border border-[#ead8cd] bg-white px-5 py-4 font-semibold text-[#2a211b]">
+                <span>Позвонить: +7 919 725-80-54</span>
+                <span class="text-[#8b5c44]">→</span>
+              </a>
+              <a href="https://t.me/Innalekss" class="flex items-center justify-between rounded-2xl border border-[#ead8cd] bg-white px-5 py-4 font-semibold text-[#2a211b]">
+                <span>Написать в Telegram</span>
+                <span class="text-[#8b5c44]">→</span>
+              </a>
+              <a href="https://t.me/i_fect" class="flex items-center justify-between rounded-2xl border border-[#ead8cd] bg-white px-5 py-4 font-semibold text-[#2a211b]">
+                <span>Телеграм-канал</span>
+                <span class="text-[#8b5c44]">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacts" class="py-16">
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="reveal" data-reveal>
+          <p class="text-sm uppercase tracking-[0.3em] text-[#8b6b5a]">Контакты</p>
+          <h2 class="font-display mt-3 text-3xl text-[#2a211b] sm:text-4xl">Мы находимся в Щёлково</h2>
+        </div>
+        <div class="mt-10 grid gap-6 lg:grid-cols-[1fr_1.2fr]">
+          <div class="reveal space-y-6 rounded-[28px] border border-white/70 bg-white/80 p-6" data-reveal>
+            <div>
+              <h3 class="font-display text-xl text-[#2a211b]">Адрес</h3>
+              <p class="mt-2 text-sm text-[#5b4a40]">Московская область, г. Щёлково, ул. Советская 65 — кабинет 327, 3 этаж</p>
+            </div>
+            <div>
+              <h3 class="font-display text-xl text-[#2a211b]">Телефон</h3>
+              <a href="tel:+79197258054" class="mt-2 inline-block text-sm font-semibold text-[#8b5c44]">+7 919 725-80-54</a>
+            </div>
+            <div>
+              <h3 class="font-display text-xl text-[#2a211b]">Telegram</h3>
+              <div class="mt-2 flex flex-col gap-2 text-sm text-[#5b4a40]">
+                <a href="https://t.me/Innalekss" class="text-[#8b5c44]">@Innalekss — запись</a>
+                <a href="https://t.me/i_fect" class="text-[#8b5c44]">@i_fect — телеграм-канал</a>
+              </div>
+            </div>
+            <div class="rounded-2xl border border-[#ead8cd] bg-[#f7efe9] p-4 text-sm text-[#5b4a40]">
+              Работаем по предварительной записи, подберем время в будни и выходные.
+            </div>
+          </div>
+          <div class="reveal overflow-hidden rounded-[28px] border border-white/70 bg-white/80" data-reveal>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2235.797686534282!2d37.99042227671098!3d55.91820827314584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b52d29b552eb05%3A0xd66ede30d8ba1ea!2z0YPQuy4g0KHQvtCy0LXRgtGB0LrQsNGPLCA2NSwg0KnRkdC70LrQvtCy0L4sINCc0L7RgdC60L7QstGB0LrQsNGPINC-0LHQuy4sINCg0L7RgdGB0LjRjywgMTQxMTAw!5e0!3m2!1sru!2snl!4v1769274357642!5m2!1sru!2snl" width="100%" height="420" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-white/70 bg-white/70 py-12">
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="reveal rounded-[24px] border border-white/70 bg-white/80 px-6 py-8 shadow-sm" data-reveal>
+          <div class="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h3 class="font-display text-2xl text-[#2a211b] sm:text-3xl">Подпишитесь на наш телеграм-канал</h3>
+              <p class="mt-2 text-sm text-[#5b4a40]">Короткие обновления, новости и записи о свободных окнах.</p>
+              <a href="https://t.me/i_fect" class="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-[#8b5c44]">
+                @i_fect
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+            <a href="https://t.me/i_fect" class="inline-flex w-full items-center justify-center rounded-full bg-[#2a211b] px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-[#1a1410] sm:w-auto">Подписаться</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/70 bg-white/70">
+    <div class="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-8 text-sm text-[#6c4f3e] sm:flex-row sm:items-center sm:justify-between">
+      <span>© 2026 Кабинет эстетической косметологии «И. Фект»</span>
+      <span>Фаркова Инна Алексеевна</span>
+      <span>Разработка сайта: t.me/chaserjzx1OO</span>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const overlay = document.getElementById('pageOverlay');
+    const header = document.getElementById('siteHeader');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (menuToggle) {
+      menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    const transitionLinks = document.querySelectorAll('.js-transition');
+    transitionLinks.forEach((link) => {
+      link.addEventListener('click', (event) => {
+        const href = link.getAttribute('href');
+        if (!href || !href.startsWith('#') || prefersReducedMotion) {
+          mobileMenu.classList.add('hidden');
+          return;
+        }
+        event.preventDefault();
+        const target = document.querySelector(href);
+        if (!target) return;
+        mobileMenu.classList.add('hidden');
+        overlay.classList.add('is-active');
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.pushState(null, '', href);
+        }, 180);
+        setTimeout(() => {
+          overlay.classList.remove('is-active');
+        }, 700);
+      });
+    });
+
+    const updateHeaderOffset = () => {
+      if (!header) return;
+      const height = header.offsetHeight || 96;
+      document.documentElement.style.setProperty('--header-offset', `${height}px`);
+    };
+    updateHeaderOffset();
+    window.addEventListener('resize', updateHeaderOffset);
+
+    if (!prefersReducedMotion) {
+      const revealItems = document.querySelectorAll('[data-reveal]');
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('reveal-visible');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+      revealItems.forEach((item) => revealObserver.observe(item));
+    } else {
+      document.querySelectorAll('[data-reveal]').forEach((item) => item.classList.add('reveal-visible'));
+    }
+
+    const beforeAfterBlocks = document.querySelectorAll('[data-before-after]');
+    beforeAfterBlocks.forEach((block) => {
+      const range = block.querySelector('[data-before-after-range]');
+      const overlay = block.querySelector('[data-before-after-overlay]');
+      const handle = block.querySelector('[data-before-after-handle]');
+      const labels = block.querySelectorAll('[data-before-after-label]');
+      if (!range || !overlay || !handle) return;
+      const HIDE_THRESHOLD = 12;
+      const upperThreshold = 100 - HIDE_THRESHOLD;
+
+      const update = (value) => {
+        const next = Math.min(100, Math.max(0, Number(value)));
+        block.style.setProperty('--split', `${next}%`);
+        handle.style.left = `${next}%`;
+        labels.forEach((label) => {
+          const isBefore = label.classList.contains('before-after__label--before');
+          const shouldHide = isBefore ? next < HIDE_THRESHOLD : next > upperThreshold;
+          label.classList.toggle('is-hidden', shouldHide);
+        });
+      };
+
+      update(range.value);
+      range.addEventListener('input', (event) => update(event.target.value));
+    });
+
+    const navLinks = document.querySelectorAll('[data-nav]');
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.getAttribute('id');
+          if (!id || !entry.isIntersecting) return;
+          navLinks.forEach((link) => {
+            link.classList.toggle('text-[#2a211b]', link.getAttribute('href') === `#${id}`);
+          });
+        });
+      },
+      { rootMargin: '-40% 0px -55% 0px' }
+    );
+    document.querySelectorAll('section[id]').forEach((section) => sectionObserver.observe(section));
+  </script>
+</body>
+</html>
