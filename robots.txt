@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ifect-beauty.ru/sitemap.xml
+# Host directive is for Yandex
+Host: ifect-beauty.ru

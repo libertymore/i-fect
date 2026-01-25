@@ -1,0 +1,10 @@
+/* TEAM */
+Owner: Фаркова Инна Алексеевна
+Contact: https://t.me/i_fect
+Location: Щёлково, Россия
+
+/* SITE */
+Name: И. Фект — кабинет эстетической косметологии
+Standards: HTML5, CSS3
+Components: Tailwind CSS
+Last update: 2026-01-25

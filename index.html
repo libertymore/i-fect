@@ -5,10 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Косметолог в Щёлково — эстетическая косметология И. Фект</title>
   <meta name="description" content="Эстетическая косметология в Щёлково. Чистка лица, пилинги, массаж, уход за кожей. Кабинет И. Фект — запись по телефону и в Telegram.">
+  <meta name="robots" content="index, follow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
   <link href="./output.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="./favicons/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="./favicons/favicon.svg" />
+  <link rel="shortcut icon" href="./favicons/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./favicons/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="И. Фект" />
+  <link rel="manifest" href="./favicons/site.webmanifest" />
   <style>
     :root {
       --accent: #c48a6a;
@@ -27,6 +34,12 @@
     .page-overlay { pointer-events: none; opacity: 0; transition: opacity 350ms ease; }
     .page-overlay.is-active { opacity: 1; }
     section[id] { scroll-margin-top: var(--header-offset, 96px); }
+    .menu-toggle span {
+      transition: transform 250ms ease, opacity 200ms ease, background-color 200ms ease;
+    }
+    .menu-toggle.is-open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .menu-toggle.is-open span:nth-child(2) { opacity: 0; }
+    .menu-toggle.is-open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
     .before-after {
       position: relative;
       overflow: hidden;
@@ -120,7 +133,7 @@
         <a href="tel:+79197258054" class="rounded-full border border-[#d8b8a6] px-4 py-2 text-sm font-semibold text-[#6c4f3e] transition hover:border-[#c48a6a] hover:text-[#2a211b]">Позвонить</a>
         <a href="https://t.me/Innalekss" class="rounded-full bg-[#c48a6a] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#a56e52]">Написать в Telegram</a>
       </div>
-      <button id="menuToggle" class="lg:hidden" aria-label="Открыть меню">
+      <button id="menuToggle" class="menu-toggle lg:hidden" aria-label="Открыть меню">
         <span class="block h-0.5 w-6 bg-[#6c4f3e]"></span>
         <span class="mt-1 block h-0.5 w-6 bg-[#6c4f3e]"></span>
         <span class="mt-1 block h-0.5 w-6 bg-[#6c4f3e]"></span>
@@ -419,7 +432,7 @@
             </div>
           </div>
           <div class="reveal overflow-hidden rounded-[28px] border border-white/70 bg-white/80" data-reveal>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2235.797686534282!2d37.99042227671098!3d55.91820827314584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b52d29b552eb05%3A0xd66ede30d8ba1ea!2z0YPQuy4g0KHQvtCy0LXRgtGB0LrQsNGPLCA2NSwg0KnRkdC70LrQvtCy0L4sINCc0L7RgdC60L7QstGB0LrQsNGPINC-0LHQuy4sINCg0L7RgdGB0LjRjywgMTQxMTAw!5e0!3m2!1sru!2snl!4v1769274357642!5m2!1sru!2snl" width="100%" height="420" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2235.797686534282!2d37.99042227671098!3d55.91820827314584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b52d29b552eb05%3A0xd66ede30d8ba1ea!2z0YPQuy4g0KHQvtCy0LXRgtGB0LrQsNGPLCA2NSwg0KnRkdC70LrQvtCy0L4sINCc0L7RgdC60L7QstGB0LrQsNGPINC-0LHQuy4sINCg0L7RgdGB0LjRjywgMTQxMTAw!5e0!3m2!1sru!2snl!4v1769274357642!5m2!1sru!2snl" width="100%" height="420" style="border:0;" allowfullscreen="" loading="earler" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
       </div>
@@ -462,6 +475,7 @@
     if (menuToggle) {
       menuToggle.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
+        menuToggle.classList.toggle('is-open');
       });
     }
 
