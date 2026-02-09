@@ -120,12 +120,12 @@
 
   <header id="siteHeader" class="sticky top-0 z-30 border-b border-white/70 bg-white/70 backdrop-blur">
     <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-      <a href="#hero" class="font-display text-2xl tracking-wide text-[#2a211b]">
+      <a href="#hero" id="siteLogo" class="font-display text-2xl tracking-wide text-[#2a211b]">
         И. Фект
       </a>
       <nav class="hidden items-center gap-8 text-sm font-medium text-[#5b4a40] lg:flex">
         <a href="#services" data-nav class="js-transition transition hover:text-[#2a211b]">Услуги</a>
-        <a href="#about" data-nav class="js-transition transition hover:text-[#2a211b]">О кабинете</a>
+        <a href="#about" data-nav class="js-transition transition hover:text-[#2a211b]">Эксперт</a>
         <a href="#results" data-nav class="js-transition transition hover:text-[#2a211b]">Процедуры</a>
         <a href="#pricing" data-nav class="js-transition transition hover:text-[#2a211b]">Цены</a>
         <a href="#contacts" data-nav class="js-transition transition hover:text-[#2a211b]">Контакты</a>
@@ -143,7 +143,7 @@
     <div id="mobileMenu" class="hidden border-t border-white/70 bg-white/90 px-6 py-4 lg:hidden">
       <div class="flex flex-col gap-3 text-sm font-medium text-[#5b4a40]">
         <a href="#services" class="js-transition">Услуги</a>
-        <a href="#about" class="js-transition">О кабинете</a>
+        <a href="#about" class="js-transition">Эксперт</a>
         <a href="#results" class="js-transition">Процедуры</a>
         <a href="#pricing" class="js-transition">Цены</a>
         <a href="#contacts" class="js-transition">Контакты</a>
@@ -275,42 +275,37 @@
     </section>
 
     <section id="about" class="py-16">
-      <div class="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[0.9fr_1.1fr]">
-        <div class="reveal rounded-[32px] border border-white/70 bg-white/70 p-8" data-reveal>
-          <h2 class="font-display text-3xl text-[#2a211b]">Кабинет «И. Фект»</h2>
-          <p class="mt-4 text-sm text-[#5b4a40]">
-            Атмосфера спокойствия, стерильность и комфорт. Процедуры подбираются под ваш ритм, учитывая сезонные потребности кожи.
-          </p>
-          <div class="mt-6 space-y-4 text-sm text-[#5b4a40]">
-            <div class="flex items-start gap-3">
-              <span class="mt-1 h-2 w-2 rounded-full bg-[#c48a6a]"></span>
-              <span>Персональный уход и сопровождение между посещениями.</span>
-            </div>
-            <div class="flex items-start gap-3">
-              <span class="mt-1 h-2 w-2 rounded-full bg-[#c48a6a]"></span>
-              <span>Подбор профессиональной косметики без навязанных продаж.</span>
-            </div>
-            <div class="flex items-start gap-3">
-              <span class="mt-1 h-2 w-2 rounded-full bg-[#c48a6a]"></span>
-              <span>Комфортная атмосфера для восстановления и релаксации.</span>
-            </div>
-          </div>
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="reveal" data-reveal>
+          <p class="text-sm uppercase tracking-[0.3em] text-[#8b6b5a]">Эксперт</p>
+          <h2 class="font-display mt-3 text-3xl text-[#2a211b] sm:text-4xl">Фаркова Инна — косметолог-эстетист</h2>
         </div>
-        <div class="reveal space-y-6" data-reveal>
-          <div class="rounded-[32px] border border-white/70 bg-[#2a211b] p-8 text-white">
-            <h3 class="font-display text-2xl">Косметолог Фаркова Инна Алексеевна</h3>
-            <p class="mt-3 text-sm text-white/80">
-              Эксперт по эстетическому уходу за кожей, автор программ восстановления, мягкого омоложения и работы с чувствительной кожей.
-            </p>
+        <div class="mt-10 grid items-center gap-8 lg:grid-cols-2">
+          <div class="reveal rounded-[32px] border border-white/70 bg-white/80 p-6 sm:p-7" data-reveal>
+            <div class="relative mx-auto h-52 w-52 sm:h-56 sm:w-56">
+              <div class="absolute -inset-3 rounded-full bg-[conic-gradient(from_120deg,_rgba(196,138,106,0.25),_rgba(183,200,190,0.25),_rgba(196,138,106,0.25))] blur-sm"></div>
+              <div class="relative h-full w-full overflow-hidden rounded-full border-[6px] border-white shadow-[0_18px_45px_-25px_rgba(0,0,0,0.5)]">
+                <img src="./img/inna.jpg" alt="Фаркова Инна" class="h-full w-full object-cover">
+              </div>
+            </div>
+            <h3 class="mt-6 text-center font-display text-2xl text-[#2a211b]">Фаркова Инна Алексеевна</h3>
+            <p class="mt-2 text-center text-sm text-[#5b4a40]">Косметолог-эстетист, бережный и индивидуальный уход.</p>
+            <div class="mt-5 flex flex-wrap items-center justify-center gap-2 text-xs uppercase tracking-[0.3em] text-[#8b6b5a]">
+              <span class="rounded-full bg-[#f2e6de] px-3 py-1">Christina</span>
+              <span class="rounded-full bg-[#f2e6de] px-3 py-1">Естественный результат</span>
+            </div>
           </div>
-          <div class="rounded-[32px] border border-white/70 bg-white/80 p-8">
-            <p class="text-sm text-[#5b4a40]">
-              Каждая процедура сопровождается рекомендациями по домашнему уходу, чтобы эффект сохранялся дольше.
-            </p>
-            <div class="mt-5 flex flex-wrap gap-3 text-xs uppercase tracking-[0.3em] text-[#8b6b5a]">
-              <span class="rounded-full bg-[#f2e6de] px-3 py-1">Консультация</span>
-              <span class="rounded-full bg-[#f2e6de] px-3 py-1">Релакс</span>
-              <span class="rounded-full bg-[#f2e6de] px-3 py-1">Результат</span>
+          <div class="reveal rounded-[32px] border border-white/70 bg-white/80 p-6 sm:p-7" data-reveal>
+            <h3 class="font-display text-2xl text-[#2a211b]">❤️ Обо мне</h3>
+            <div class="mt-4 space-y-3 text-sm text-[#5b4a40]">
+              <p>Меня зовут Инна. Я косметолог-эстетист.</p>
+              <p>Работаю с кожей бережно и индивидуально, с вниманием к её состоянию и ритму жизни.</p>
+              <p>Использую профессиональную косметику Christina и выбираю естественный, аккуратный результат.</p>
+            </div>
+            <div class="mt-6 flex flex-wrap gap-3 text-xs uppercase tracking-[0.3em] text-[#8b6b5a]">
+              <span class="rounded-full bg-[#f2e6de] px-3 py-1">Диалог</span>
+              <span class="rounded-full bg-[#f2e6de] px-3 py-1">Бережно</span>
+              <span class="rounded-full bg-[#f2e6de] px-3 py-1">Индивидуально</span>
             </div>
           </div>
         </div>
@@ -459,16 +454,27 @@
   </main>
 
   <footer class="border-t border-white/70 bg-white/70">
-    <div class="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-8 text-sm text-[#6c4f3e] sm:flex-row sm:items-center sm:justify-between">
-      <span>© 2026 Кабинет эстетической косметологии «И. Фект»</span>
-      <span>Фаркова Инна Алексеевна</span>
-      <span>Разработка сайта: t.me/chaserjzx1OO</span>
+    <div class="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-8 text-sm text-[#6c4f3e]">
+      <div class="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.3em] text-[#8b6b5a]">
+        <a href="./chistka-lica-shchelkovo.html" class="rounded-full bg-[#f2e6de] px-3 py-1">Чистка лица</a>
+        <a href="./maski-dlya-lica-shchelkovo.html" class="rounded-full bg-[#f2e6de] px-3 py-1">Маски</a>
+        <a href="./pilingi-shchelkovo.html" class="rounded-full bg-[#f2e6de] px-3 py-1">Пилинги</a>
+        <a href="./massazh-lica-shchelkovo.html" class="rounded-full bg-[#f2e6de] px-3 py-1">Массаж лица</a>
+        <a href="./diagnostika-kozhi-shchelkovo.html" class="rounded-full bg-[#f2e6de] px-3 py-1">Диагностика кожи</a>
+        <a href="./kombo-uhod-shchelkovo.html" class="rounded-full bg-[#f2e6de] px-3 py-1">Комбо-уход</a>
+      </div>
+      <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <span>© 2026 Кабинет эстетической косметологии «И. Фект»</span>
+        <span>Фаркова Инна Алексеевна</span>
+        <span>Разработка сайта: t.me/chaserjzx1OO</span>
+      </div>
     </div>
   </footer>
 
   <script>
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
+    const siteLogo = document.getElementById('siteLogo');
     const overlay = document.getElementById('pageOverlay');
     const header = document.getElementById('siteHeader');
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -480,18 +486,29 @@
       });
     }
 
+    if (siteLogo) {
+      siteLogo.addEventListener('click', () => {
+        if (!mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('hidden');
+          menuToggle.classList.remove('is-open');
+        }
+      });
+    }
+
     const transitionLinks = document.querySelectorAll('.js-transition');
     transitionLinks.forEach((link) => {
       link.addEventListener('click', (event) => {
         const href = link.getAttribute('href');
         if (!href || !href.startsWith('#') || prefersReducedMotion) {
           mobileMenu.classList.add('hidden');
+          menuToggle.classList.remove('is-open');
           return;
         }
         event.preventDefault();
         const target = document.querySelector(href);
         if (!target) return;
         mobileMenu.classList.add('hidden');
+        menuToggle.classList.remove('is-open');
         overlay.classList.add('is-active');
         setTimeout(() => {
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
