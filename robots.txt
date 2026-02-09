@@ -1,6 +1,12 @@
 User-agent: *
 Allow: /
-
 Sitemap: https://ifect-beauty.ru/sitemap.xml
-# Host directive is for Yandex
+
+User-agent: Yandex
+Allow: /
 Host: ifect-beauty.ru
+Sitemap: https://ifect-beauty.ru/sitemap.xml
+
+User-agent: Googlebot
+Allow: /
+Sitemap: https://ifect-beauty.ru/sitemap.xml

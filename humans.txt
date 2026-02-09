@@ -5,6 +5,7 @@ Location: Щёлково, Россия
 
 /* SITE */
 Name: И. Фект — кабинет эстетической косметологии
+URL: https://ifect-beauty.ru/
 Standards: HTML5, CSS3
 Components: Tailwind CSS
-Last update: 2026-01-25
+Last update: 2026-02-09
