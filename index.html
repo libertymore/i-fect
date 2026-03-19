@@ -1,605 +1,482 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Косметолог в Щёлково — эстетическая косметология И. Фект</title>
-  <meta name="description" content="Эстетическая косметология в Щёлково. Чистка лица, пилинги, массаж, уход за кожей. Кабинет И. Фект — запись по телефону и в Telegram.">
-  <meta name="robots" content="index, follow">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
-  <link href="./output.css" rel="stylesheet">
-  <!-- Top.Mail.Ru counter -->
-  <script type="text/javascript">
-      var _tmr = window._tmr || (window._tmr = []);
-      _tmr.push({id: "3742977", type: "pageView", start: (new Date()).getTime()});
-      (function (d, w, id) {
-        if (d.getElementById(id)) return;
-        var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
-        ts.src = "https://top-fwz1.mail.ru/js/code.js";
-        var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
-        if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
-      })(document, window, "tmr-code");
-  </script>
-  <noscript><div><img src="https://top-fwz1.mail.ru/counter?id=3742977;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" /></div></noscript>
-  <!-- /Top.Mail.Ru counter -->
-  <meta name="yandex-verification" content="dc5152abf26ac954" />
-  <link rel="icon" href="./favicons/favicon.ico" type="image/x-icon">
-  <link rel="icon" type="image/png" href="./favicons/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="./favicons/favicon.svg" />
-  <link rel="shortcut icon" href="./favicons/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="./favicons/apple-touch-icon.png" />
-  <meta name="apple-mobile-web-app-title" content="И. Фект" />
-  <link rel="manifest" href="./favicons/site.webmanifest" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Закрыто</title>
   <style>
     :root {
-      --accent: #c48a6a;
-      --accent-dark: #8b5c44;
-      --cream: #f7efe9;
-      --ink: #1f1b17;
+      --bg-1: #050816;
+      --bg-2: #0a1026;
+      --text: rgba(255,255,255,0.96);
+      --muted: rgba(255,255,255,0.7);
+      --glass: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.14);
+      --glow-a: 120, 180, 255;
+      --glow-b: 170, 120, 255;
     }
-    html { scroll-behavior: smooth; }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(70,120,255,0.18), transparent 30%),
+        radial-gradient(circle at 80% 30%, rgba(170,120,255,0.14), transparent 28%),
+        radial-gradient(circle at 50% 80%, rgba(120,220,255,0.10), transparent 30%),
+        linear-gradient(180deg, var(--bg-1), var(--bg-2));
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      cursor: crosshair;
+    }
+
     body {
-      font-family: 'Manrope', system-ui, -apple-system, sans-serif;
-      color: var(--ink);
-    }
-    .font-display { font-family: 'Marcellus', serif; }
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 700ms ease, transform 700ms ease; }
-    .reveal-visible { opacity: 1; transform: translateY(0); }
-    .page-overlay { pointer-events: none; opacity: 0; transition: opacity 350ms ease; }
-    .page-overlay.is-active { opacity: 1; }
-    section[id] { scroll-margin-top: var(--header-offset, 96px); }
-    .menu-toggle span {
-      transition: transform 250ms ease, opacity 200ms ease, background-color 200ms ease;
-    }
-    .menu-toggle.is-open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-    .menu-toggle.is-open span:nth-child(2) { opacity: 0; }
-    .menu-toggle.is-open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-    .before-after {
       position: relative;
-      overflow: hidden;
-      border-radius: 28px;
-      background: #f7efe9;
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      --split: 50%;
+      display: grid;
+      place-items: center;
+      isolation: isolate;
     }
-    .before-after__image {
-      position: absolute;
+
+    canvas {
+      position: fixed;
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
       display: block;
+      z-index: 0;
     }
-    .before-after__overlay {
-      position: absolute;
+
+    .noise,
+    .vignette,
+    .cursor-glow,
+    .nebula {
+      position: fixed;
       inset: 0;
-      height: 100%;
-      width: 100%;
+      pointer-events: none;
+    }
+
+    .noise {
+      z-index: 1;
+      opacity: 0.045;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.7) 0.5px, transparent 0.8px),
+        radial-gradient(circle at 80% 60%, rgba(255,255,255,0.5) 0.5px, transparent 0.9px),
+        radial-gradient(circle at 40% 80%, rgba(255,255,255,0.45) 0.5px, transparent 1px);
+      background-size: 180px 180px, 220px 220px, 260px 260px;
+      mix-blend-mode: screen;
+      animation: driftNoise 18s linear infinite;
+    }
+
+    .nebula {
+      z-index: 1;
+      background:
+        radial-gradient(600px 400px at var(--mx, 50%) var(--my, 50%), rgba(120, 180, 255, 0.13), transparent 55%),
+        radial-gradient(500px 300px at calc(100% - var(--mx, 50%)) calc(100% - var(--my, 50%)), rgba(170, 120, 255, 0.12), transparent 50%);
+      filter: blur(24px);
+      transition: background-position 0.12s linear;
+    }
+
+    .cursor-glow {
+      z-index: 2;
+      background:
+        radial-gradient(320px 320px at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.07), transparent 45%),
+        radial-gradient(520px 520px at var(--mx, 50%) var(--my, 50%), rgba(var(--glow-a),0.10), transparent 40%),
+        radial-gradient(780px 780px at var(--mx, 50%) var(--my, 50%), rgba(var(--glow-b),0.08), transparent 30%);
+      mix-blend-mode: screen;
+    }
+
+    .vignette {
+      z-index: 3;
+      background: radial-gradient(circle at center, transparent 35%, rgba(0,0,0,0.48) 100%);
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 4;
+      padding: 24px;
+      width: min(92vw, 980px);
+    }
+
+    .panel {
+      position: relative;
+      padding: clamp(28px, 4vw, 56px);
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.05));
+      border: 1px solid var(--border);
+      box-shadow:
+        0 24px 80px rgba(0,0,0,0.45),
+        inset 0 1px 0 rgba(255,255,255,0.12),
+        0 0 40px rgba(120,180,255,0.10);
+      backdrop-filter: blur(18px) saturate(140%);
+      -webkit-backdrop-filter: blur(18px) saturate(140%);
       overflow: hidden;
-      clip-path: inset(0 calc(100% - var(--split)) 0 0);
+      transform-style: preserve-3d;
+      transition: transform 0.15s ease-out, box-shadow 0.2s ease-out;
     }
-    .before-after__handle {
+
+    .panel::before,
+    .panel::after {
+      content: "";
       position: absolute;
-      top: 0;
-      bottom: 0;
-      border-left: 2px solid rgba(255, 255, 255, 0.95);
-    }
-    .before-after__handle::after {
-      content: '';
-      position: absolute;
-      left: -18px;
-      top: 50%;
-      width: 36px;
-      height: 36px;
+      inset: auto;
       border-radius: 999px;
-      background: #2a211b;
-      border: 2px solid #ffffff;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
-      transform: translateY(-50%);
+      filter: blur(50px);
+      opacity: 0.45;
+      pointer-events: none;
     }
-    .before-after__range {
+
+    .panel::before {
+      width: 220px;
+      height: 220px;
+      top: -70px;
+      left: -60px;
+      background: rgba(120, 180, 255, 0.22);
+    }
+
+    .panel::after {
+      width: 240px;
+      height: 240px;
+      right: -60px;
+      bottom: -90px;
+      background: rgba(170, 120, 255, 0.16);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+      margin-bottom: 22px;
+    }
+
+    .tag::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fff 0%, #93b8ff 50%, #6f82ff 100%);
+      box-shadow: 0 0 14px rgba(147,184,255,0.8);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(38px, 7vw, 84px);
+      line-height: 0.95;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      text-wrap: balance;
+      text-shadow: 0 0 30px rgba(255,255,255,0.08), 0 0 60px rgba(110,150,255,0.18);
+    }
+
+    h1 .accent {
+      display: block;
+      color: rgba(255,255,255,0.88);
+      background: linear-gradient(90deg, rgba(255,255,255,0.98), rgba(177,205,255,0.92), rgba(221,204,255,0.96));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p {
+      margin: 20px 0 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: clamp(15px, 2vw, 20px);
+      line-height: 1.65;
+    }
+
+    .stars-top {
       position: absolute;
       inset: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      cursor: ew-resize;
+      overflow: hidden;
+      pointer-events: none;
     }
-    .before-after__label {
+
+    .stars-top span {
       position: absolute;
-      top: 16px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.85);
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #5b4a40;
-      transition: opacity 200ms ease, transform 200ms ease;
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 0 12px rgba(255,255,255,0.8);
+      animation: blink linear infinite;
+      opacity: 0.75;
     }
-    .before-after__label--before { left: 16px; }
-    .before-after__label--after { right: 16px; }
-    .before-after__label.is-hidden { opacity: 0; transform: translateY(-6px); pointer-events: none; }
+
+    .footer-note {
+      margin-top: 28px;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+
+    @keyframes blink {
+      0%, 100% { transform: scale(0.9); opacity: 0.45; }
+      50% { transform: scale(1.8); opacity: 1; }
+    }
+
+    @keyframes driftNoise {
+      from { transform: translate3d(0,0,0); }
+      50% { transform: translate3d(-10px, 8px, 0); }
+      to { transform: translate3d(0,0,0); }
+    }
+
+    @media (max-width: 640px) {
+      .wrap { width: min(94vw, 980px); }
+      .panel { border-radius: 22px; }
+      p { line-height: 1.55; }
+    }
   </style>
 </head>
-<body class="bg-[#fbf7f4] text-[#231f1c]">
-  <div class="fixed inset-0 -z-10">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(196,138,106,0.25),transparent_55%),radial-gradient(circle_at_20%_80%,_rgba(143,175,160,0.25),transparent_50%),linear-gradient(120deg,_#fff9f6_0%,_#f7efe9_60%,_#ffffff_100%)]"></div>
-    <div class="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-[rgba(196,138,106,0.18)] blur-3xl"></div>
-    <div class="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-[rgba(140,170,160,0.2)] blur-3xl"></div>
-  </div>
+<body>
+  <canvas id="space"></canvas>
+  <div class="noise"></div>
+  <div class="nebula"></div>
+  <div class="cursor-glow"></div>
+  <div class="vignette"></div>
 
-  <div id="pageOverlay" class="page-overlay fixed inset-0 z-40 bg-[#f9f3ef]"></div>
-
-  <header id="siteHeader" class="sticky top-0 z-30 border-b border-white/70 bg-white/70 backdrop-blur">
-    <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-      <a href="#hero" id="siteLogo" class="font-display text-2xl tracking-wide text-[#2a211b]">
-        И. Фект
-      </a>
-      <nav class="hidden items-center gap-8 text-sm font-medium text-[#5b4a40] lg:flex">
-        <a href="#services" data-nav class="js-transition transition hover:text-[#2a211b]">Услуги</a>
-        <a href="#about" data-nav class="js-transition transition hover:text-[#2a211b]">Эксперт</a>
-        <a href="#results" data-nav class="js-transition transition hover:text-[#2a211b]">Процедуры</a>
-        <a href="#pricing" data-nav class="js-transition transition hover:text-[#2a211b]">Цены</a>
-        <a href="#contacts" data-nav class="js-transition transition hover:text-[#2a211b]">Контакты</a>
-      </nav>
-      <div class="hidden items-center gap-3 lg:flex">
-        <a href="tel:+79197258054" class="rounded-full border border-[#d8b8a6] px-4 py-2 text-sm font-semibold text-[#6c4f3e] transition hover:border-[#c48a6a] hover:text-[#2a211b]">Позвонить</a>
-        <a href="https://t.me/Innalekss" class="rounded-full bg-[#c48a6a] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#a56e52]">Написать в Telegram</a>
-      </div>
-      <button id="menuToggle" class="menu-toggle lg:hidden" aria-label="Открыть меню">
-        <span class="block h-0.5 w-6 bg-[#6c4f3e]"></span>
-        <span class="mt-1 block h-0.5 w-6 bg-[#6c4f3e]"></span>
-        <span class="mt-1 block h-0.5 w-6 bg-[#6c4f3e]"></span>
-      </button>
-    </div>
-    <div id="mobileMenu" class="hidden border-t border-white/70 bg-white/90 px-6 py-4 lg:hidden">
-      <div class="flex flex-col gap-3 text-sm font-medium text-[#5b4a40]">
-        <a href="#services" class="js-transition">Услуги</a>
-        <a href="#about" class="js-transition">Эксперт</a>
-        <a href="#results" class="js-transition">Процедуры</a>
-        <a href="#pricing" class="js-transition">Цены</a>
-        <a href="#contacts" class="js-transition">Контакты</a>
-        <div class="mt-3 flex flex-col gap-2">
-          <a href="tel:+79197258054" class="rounded-full border border-[#d8b8a6] px-4 py-2 text-center font-semibold text-[#6c4f3e]">Позвонить</a>
-          <a href="https://t.me/Innalekss" class="rounded-full bg-[#c48a6a] px-4 py-2 text-center font-semibold text-white">Написать в Telegram</a>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <section id="hero" class="relative overflow-hidden">
-      <div class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-6 pb-20 pt-14 lg:grid-cols-[1.1fr_0.9fr] lg:pb-28 lg:pt-20">
-        <div class="space-y-6">
-          <p class="text-sm uppercase tracking-[0.3em] text-[#8b6b5a]">Запишитесь на консультацию сегодня</p>
-          <h1 class="font-display text-3xl leading-tight text-[#2a211b] sm:text-4xl lg:text-5xl">
-            Эстетическая косметология в Щёлково
-          </h1>
-          <p class="text-lg text-[#5b4a40]">
-            Бережные процедуры, персональный подход и видимые результаты для вашей кожи.
-          </p>
-          <div class="flex flex-col gap-3 sm:flex-row">
-            <a href="tel:+79197258054" class="js-transition inline-flex items-center justify-center rounded-full bg-[#2a211b] px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-[#1a1410]">Записаться по телефону</a>
-            <a href="https://t.me/Innalekss" class="inline-flex items-center justify-center rounded-full border border-[#2a211b] px-6 py-3 text-sm font-semibold uppercase tracking-wider text-[#2a211b] transition hover:bg-[#2a211b] hover:text-white">Написать в Telegram</a>
-          </div>
-          <div class="flex flex-wrap gap-4 text-sm text-[#6c4f3e]">
-            <span class="rounded-full bg-white/70 px-4 py-2">Бесплатная оценка типа кожи</span>
-            <span class="rounded-full bg-white/70 px-4 py-2">Работа с чувствительной кожей</span>
-            <span class="rounded-full bg-white/70 px-4 py-2">Комфортные процедуры</span>
-          </div>
-        </div>
-        <div class="relative">
-          <div class="absolute -top-6 right-6 h-20 w-20 rounded-full bg-[#c48a6a] opacity-70"></div>
-          <div class="absolute -bottom-10 left-0 h-24 w-24 rounded-full bg-[#b7c8be] opacity-70"></div>
-          <div class="rounded-[32px] border border-white/80 bg-white/80 p-8 shadow-[0_35px_80px_-50px_rgba(0,0,0,0.25)] backdrop-blur">
-            <h2 class="font-display text-2xl text-[#2a211b]">Ваш путь к сияющей коже</h2>
-            <p class="mt-4 text-sm text-[#5b4a40]">
-              Авторские программы ухода: очищение, восстановление, релаксация. Внимание к деталям и атмосфера спокойствия.
-            </p>
-            <div class="mt-6 grid gap-4 text-sm text-[#5b4a40]">
-              <div class="flex items-center gap-3">
-                <span class="flex h-10 w-10 items-center justify-center rounded-full bg-[#f2e6de]">01</span>
-                <span>Консультация и диагностика кожи</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <span class="flex h-10 w-10 items-center justify-center rounded-full bg-[#f2e6de]">02</span>
-                <span>Подбор процедуры и домашнего ухода</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <span class="flex h-10 w-10 items-center justify-center rounded-full bg-[#f2e6de]">03</span>
-                <span>Мягкий контроль динамики и результата</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="border-t border-white/70 bg-white/70 py-16">
-      <div class="mx-auto max-w-6xl px-6">
-        <div class="reveal" data-reveal>
-          <p class="text-sm uppercase tracking-[0.3em] text-[#8b6b5a]">До и после</p>
-          <h2 class="font-display mt-3 text-3xl text-[#2a211b] sm:text-4xl">Сравните результат процедур</h2>
-        </div>
-        <div class="mt-10">
-          <div class="before-after h-[320px] sm:h-[420px] lg:h-[480px]" data-before-after>
-            <img src="./img/after.png" alt="Кожа после процедуры" class="before-after__image">
-            <div class="before-after__overlay" data-before-after-overlay>
-              <img src="./img/before.png" alt="Кожа до процедуры" class="before-after__image">
-            </div>
-            <span class="before-after__label before-after__label--before" data-before-after-label>ДО</span>
-            <span class="before-after__label before-after__label--after" data-before-after-label>ПОСЛЕ</span>
-            <div class="before-after__handle" data-before-after-handle style="left: 50%;"></div>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value="50"
-              class="before-after__range"
-              data-before-after-range
-              aria-label="Передвиньте ползунок, чтобы сравнить до и после"
-            >
-          </div>
-          <p class="mt-4 text-sm text-[#5b4a40]">Передвигайте ползунок, чтобы увидеть разницу и качество результата.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="services" class="border-t border-white/70 bg-white/70 py-16">
-      <div class="mx-auto max-w-6xl px-6">
-        <div class="reveal" data-reveal>
-          <p class="text-sm uppercase tracking-[0.3em] text-[#8b6b5a]">Основные услуги</p>
-          <h2 class="font-display mt-3 text-3xl text-[#2a211b] sm:text-4xl">Уходовые процедуры с эффектом и комфортом</h2>
-        </div>
-        <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <article class="reveal rounded-3xl border border-white/80 bg-white/80 p-6 shadow-sm" data-reveal>
-            <h3 class="font-display text-xl text-[#2a211b]">Чистка лица</h3>
-            <p class="mt-3 text-sm text-[#5b4a40]">Глубокое очищение пор и обновление кожи с учетом индивидуальных особенностей.</p>
-            <p class="mt-4 text-lg font-semibold text-[#8b5c44]">от 2 500 ₽</p>
-          </article>
-          <article class="reveal rounded-3xl border border-white/80 bg-white/80 p-6 shadow-sm" data-reveal>
-            <h3 class="font-display text-xl text-[#2a211b]">Маски</h3>
-            <p class="mt-3 text-sm text-[#5b4a40]">Питание, увлажнение и сияние. Подбор по типу кожи и сезону.</p>
-            <p class="mt-4 text-lg font-semibold text-[#8b5c44]">от 1 200 ₽</p>
-          </article>
-          <article class="reveal rounded-3xl border border-white/80 bg-white/80 p-6 shadow-sm" data-reveal>
-            <h3 class="font-display text-xl text-[#2a211b]">Пилинги</h3>
-            <p class="mt-3 text-sm text-[#5b4a40]">Деликатное обновление кожи, выравнивание тона, работа с текстурой.</p>
-            <p class="mt-4 text-lg font-semibold text-[#8b5c44]">от 1 800 ₽</p>
-          </article>
-          <article class="reveal rounded-3xl border border-white/80 bg-white/80 p-6 shadow-sm" data-reveal>
-            <h3 class="font-display text-xl text-[#2a211b]">Массаж лица</h3>
-            <p class="mt-3 text-sm text-[#5b4a40]">Расслабление, улучшение микроциркуляции и тонуса кожи.</p>
-            <p class="mt-4 text-lg font-semibold text-[#8b5c44]">от 1 600 ₽</p>
-          </article>
-          <article class="reveal rounded-3xl border border-white/80 bg-white/80 p-6 shadow-sm" data-reveal>
-            <h3 class="font-display text-xl text-[#2a211b]">Оценка кожи</h3>
-            <p class="mt-3 text-sm text-[#5b4a40]">Диагностика типа и потребностей кожи с рекомендациями ухода.</p>
-            <p class="mt-4 text-lg font-semibold text-[#8b5c44]">Бесплатно</p>
-          </article>
-          <article class="reveal rounded-3xl border border-white/80 bg-white/80 p-6 shadow-sm" data-reveal>
-            <h3 class="font-display text-xl text-[#2a211b]">Комбо-программы</h3>
-            <p class="mt-3 text-sm text-[#5b4a40]">Сочетание чистки, маски и массажа для устойчивого результата.</p>
-            <p class="mt-4 text-lg font-semibold text-[#8b5c44]">от 3 500 ₽</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="py-16">
-      <div class="mx-auto max-w-6xl px-6">
-        <div class="reveal" data-reveal>
-          <p class="text-sm uppercase tracking-[0.3em] text-[#8b6b5a]">Эксперт</p>
-          <h2 class="font-display mt-3 text-3xl text-[#2a211b] sm:text-4xl">Фаркова Инна — косметолог-эстетист</h2>
-        </div>
-        <div class="mt-10 grid items-center gap-8 lg:grid-cols-2">
-          <div class="reveal rounded-[32px] border border-white/70 bg-white/80 p-6 sm:p-7" data-reveal>
-            <div class="relative mx-auto h-52 w-52 sm:h-56 sm:w-56">
-              <div class="absolute -inset-3 rounded-full bg-[conic-gradient(from_120deg,_rgba(196,138,106,0.25),_rgba(183,200,190,0.25),_rgba(196,138,106,0.25))] blur-sm"></div>
-              <div class="relative h-full w-full overflow-hidden rounded-full border-[6px] border-white shadow-[0_18px_45px_-25px_rgba(0,0,0,0.5)]">
-                <img src="./img/inna.jpg" alt="Фаркова Инна" class="h-full w-full object-cover">
-              </div>
-            </div>
-            <h3 class="mt-6 text-center font-display text-2xl text-[#2a211b]">Фаркова Инна Алексеевна</h3>
-            <p class="mt-2 text-center text-sm text-[#5b4a40]">Косметолог-эстетист, бережный и индивидуальный уход.</p>
-            <div class="mt-5 flex flex-wrap items-center justify-center gap-2 text-xs uppercase tracking-[0.3em] text-[#8b6b5a]">
-              <span class="rounded-full bg-[#f2e6de] px-3 py-1">Christina</span>
-              <span class="rounded-full bg-[#f2e6de] px-3 py-1">Естественный результат</span>
-            </div>
-          </div>
-          <div class="reveal rounded-[32px] border border-white/70 bg-white/80 p-6 sm:p-7" data-reveal>
-            <h3 class="font-display text-2xl text-[#2a211b]">❤️ Обо мне</h3>
-            <div class="mt-4 space-y-3 text-sm text-[#5b4a40]">
-              <p>Меня зовут Инна. Я косметолог-эстетист.</p>
-              <p>Работаю с кожей бережно и индивидуально, с вниманием к её состоянию и ритму жизни.</p>
-              <p>Использую профессиональную косметику Christina и выбираю естественный, аккуратный результат.</p>
-            </div>
-            <div class="mt-6 flex flex-wrap gap-3 text-xs uppercase tracking-[0.3em] text-[#8b6b5a]">
-              <span class="rounded-full bg-[#f2e6de] px-3 py-1">Диалог</span>
-              <span class="rounded-full bg-[#f2e6de] px-3 py-1">Бережно</span>
-              <span class="rounded-full bg-[#f2e6de] px-3 py-1">Индивидуально</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="results" class="border-t border-white/70 bg-white/70 py-16">
-      <div class="mx-auto max-w-6xl px-6">
-        <div class="reveal" data-reveal>
-          <p class="text-sm uppercase tracking-[0.3em] text-[#8b6b5a]">Как проходит</p>
-          <h2 class="font-display mt-3 text-3xl text-[#2a211b] sm:text-4xl">Процедуры, которые вы почувствуете сразу</h2>
-        </div>
-        <div class="mt-10 grid gap-6 lg:grid-cols-3">
-          <div class="reveal rounded-[28px] border border-white/80 bg-white/80 p-6" data-reveal>
-            <h3 class="font-display text-xl text-[#2a211b]">Нежное очищение</h3>
-            <p class="mt-3 text-sm text-[#5b4a40]">Снимаем стресс кожи, очищаем и подготавливаем к активным компонентам.</p>
-          </div>
-          <div class="reveal rounded-[28px] border border-white/80 bg-white/80 p-6" data-reveal>
-            <h3 class="font-display text-xl text-[#2a211b]">Глубокое питание</h3>
-            <p class="mt-3 text-sm text-[#5b4a40]">Маски и сыворотки усиливают сияние и барьерные функции.</p>
-          </div>
-          <div class="reveal rounded-[28px] border border-white/80 bg-white/80 p-6" data-reveal>
-            <h3 class="font-display text-xl text-[#2a211b]">Массаж и лимфодренаж</h3>
-            <p class="mt-3 text-sm text-[#5b4a40]">Освобождаем мышцы лица от напряжения, улучшаем тонус.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="pricing" class="py-16">
-      <div class="mx-auto max-w-6xl px-6">
-        <div class="reveal" data-reveal>
-          <p class="text-sm uppercase tracking-[0.3em] text-[#8b6b5a]">Стоимость</p>
-          <h2 class="font-display mt-3 text-3xl text-[#2a211b] sm:text-4xl">Цены</h2>
-        </div>
-        <div class="mt-10 grid gap-6 lg:grid-cols-2">
-          <div class="reveal rounded-[28px] border border-white/70 bg-white/80 p-8" data-reveal>
-            <div class="flex items-center justify-between border-b border-[#ead8cd] pb-4 text-sm text-[#5b4a40]">
-              <span>Чистка лица</span>
-              <span class="font-semibold text-[#8b5c44]">2 500 ₽</span>
-            </div>
-            <div class="mt-4 flex items-center justify-between border-b border-[#ead8cd] pb-4 text-sm text-[#5b4a40]">
-              <span>Пилинг + маска</span>
-              <span class="font-semibold text-[#8b5c44]">1 800 ₽</span>
-            </div>
-            <div class="mt-4 flex items-center justify-between border-b border-[#ead8cd] pb-4 text-sm text-[#5b4a40]">
-              <span>Массаж лица</span>
-              <span class="font-semibold text-[#8b5c44]">1 600 ₽</span>
-            </div>
-            <div class="mt-4 flex items-center justify-between text-sm text-[#5b4a40]">
-              <span>Комбо-программа</span>
-              <span class="font-semibold text-[#8b5c44]">3 500 ₽</span>
-            </div>
-          </div>
-          <div class="reveal rounded-[28px] border border-white/70 bg-[#2a211b] p-8 text-white" data-reveal>
-            <h3 class="font-display text-2xl">Запишитесь на бесплатную оценку кожи</h3>
-            <p class="mt-3 text-sm text-white/80">Подберем оптимальную схему ухода и поддержим результат между визитами.</p>
-            <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-              <a href="tel:+79197258054" class="inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold uppercase tracking-wider text-[#2a211b]">Позвонить</a>
-              <a href="https://t.me/Innalekss" class="inline-flex items-center justify-center rounded-full border border-white/70 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white">Написать в Telegram</a>
-            </div>
-            <p class="mt-5 text-xs uppercase tracking-[0.3em] text-white/60">Ответим в течение дня</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="border-t border-white/70 bg-white/70 py-16">
-      <div class="mx-auto max-w-6xl px-6">
-        <div class="reveal rounded-[32px] border border-white/70 bg-white/80 p-10" data-reveal>
-          <div class="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-            <div>
-              <h2 class="mt-12 font-display text-4xl text-[#2a211b]">Запишитесь к нам</h2>
-              <p class="mt-3 text-m text-[#5b4a40]">Выберите удобный канал связи — и мы подберем время визита.</p>
-            </div>
-            <div class="flex flex-col gap-3 text-sm">
-              <a href="tel:+79197258054" class="flex items-center justify-between rounded-2xl border border-[#ead8cd] bg-white px-5 py-4 font-semibold text-[#2a211b]">
-                <span>Позвонить: +7 919 725-80-54</span>
-                <span class="text-[#8b5c44]">→</span>
-              </a>
-              <a href="https://t.me/Innalekss" class="flex items-center justify-between rounded-2xl border border-[#ead8cd] bg-white px-5 py-4 font-semibold text-[#2a211b]">
-                <span>Написать в Telegram</span>
-                <span class="text-[#8b5c44]">→</span>
-              </a>
-              <a href="https://t.me/i_fect" class="flex items-center justify-between rounded-2xl border border-[#ead8cd] bg-white px-5 py-4 font-semibold text-[#2a211b]">
-                <span>Телеграм-канал</span>
-                <span class="text-[#8b5c44]">→</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contacts" class="py-16">
-      <div class="mx-auto max-w-6xl px-6">
-        <div class="reveal" data-reveal>
-          <p class="text-sm uppercase tracking-[0.3em] text-[#8b6b5a]">Контакты</p>
-          <h2 class="font-display mt-3 text-3xl text-[#2a211b] sm:text-4xl">Мы находимся в Щёлково</h2>
-        </div>
-        <div class="mt-10 grid gap-6 lg:grid-cols-[1fr_1.2fr]">
-          <div class="reveal space-y-6 rounded-[28px] border border-white/70 bg-white/80 p-6" data-reveal>
-            <div>
-              <h3 class="font-display text-xl text-[#2a211b]">Адрес</h3>
-              <p class="mt-2 text-sm text-[#5b4a40]">Московская область, г. Щёлково, ул. Советская 65 — кабинет 327, 3 этаж</p>
-            </div>
-            <div>
-              <h3 class="font-display text-xl text-[#2a211b]">Телефон</h3>
-              <a href="tel:+79197258054" class="mt-2 inline-block text-sm font-semibold text-[#8b5c44]">+7 919 725-80-54</a>
-            </div>
-            <div>
-              <h3 class="font-display text-xl text-[#2a211b]">Telegram</h3>
-              <div class="mt-2 flex flex-col gap-2 text-sm text-[#5b4a40]">
-                <a href="https://t.me/Innalekss" class="text-[#8b5c44]">@Innalekss — запись</a>
-                <a href="https://t.me/i_fect" class="text-[#8b5c44]">@i_fect — телеграм-канал</a>
-              </div>
-            </div>
-            <div class="rounded-2xl border border-[#ead8cd] bg-[#f7efe9] p-4 text-sm text-[#5b4a40]">
-              Работаем по предварительной записи, подберем время в будни и выходные.
-            </div>
-          </div>
-          <div class="reveal overflow-hidden rounded-[28px] border border-white/70 bg-white/80" data-reveal>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2235.797686534282!2d37.99042227671098!3d55.91820827314584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b52d29b552eb05%3A0xd66ede30d8ba1ea!2z0YPQuy4g0KHQvtCy0LXRgtGB0LrQsNGPLCA2NSwg0KnRkdC70LrQvtCy0L4sINCc0L7RgdC60L7QstGB0LrQsNGPINC-0LHQuy4sINCg0L7RgdGB0LjRjywgMTQxMTAw!5e0!3m2!1sru!2snl!4v1769274357642!5m2!1sru!2snl" width="100%" height="420" style="border:0;" allowfullscreen="" loading="earler" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="border-t border-white/70 bg-white/70 py-12">
-      <div class="mx-auto max-w-6xl px-6">
-        <div class="reveal rounded-[24px] border border-white/70 bg-white/80 px-6 py-8 shadow-sm" data-reveal>
-          <div class="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h3 class="font-display text-2xl text-[#2a211b] sm:text-3xl">Подпишитесь на наш телеграм-канал</h3>
-              <p class="mt-2 text-sm text-[#5b4a40]">Короткие обновления, новости и записи о свободных окнах.</p>
-              <a href="https://t.me/i_fect" class="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-[#8b5c44]">
-                @i_fect
-                <span aria-hidden="true">→</span>
-              </a>
-            </div>
-            <a href="https://t.me/i_fect" class="inline-flex w-full items-center justify-center rounded-full bg-[#2a211b] px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-[#1a1410] sm:w-auto">Подписаться</a>
-          </div>
-        </div>
-      </div>
+  <main class="wrap">
+    <section class="panel" id="panel">
+      <div class="stars-top" id="starsTop"></div>
+      <div class="tag">И. Фект Бьюти</div>
+      <h1>
+        Закрыто.<br />
+        <span class="accent">Всем спасибо, кто был с нами</span>
+      </h1>
+      <p>
+        Этот проект завершён. Всё хорошее остаётся в памяти — люди, поддержка, внимание и время, которое вы были рядом.
+      </p>
+      <div class="footer-note">thank you for the orbit</div>
     </section>
   </main>
 
-  <footer class="border-t border-white/70 bg-white/70">
-    <div class="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-8 text-sm text-[#6c4f3e]">
-      <div class="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.3em] text-[#8b6b5a]">
-        <a href="./chistka-lica-shchelkovo.html" class="rounded-full bg-[#f2e6de] px-3 py-1">Чистка лица</a>
-        <a href="./maski-dlya-lica-shchelkovo.html" class="rounded-full bg-[#f2e6de] px-3 py-1">Маски</a>
-        <a href="./pilingi-shchelkovo.html" class="rounded-full bg-[#f2e6de] px-3 py-1">Пилинги</a>
-        <a href="./massazh-lica-shchelkovo.html" class="rounded-full bg-[#f2e6de] px-3 py-1">Массаж лица</a>
-        <a href="./diagnostika-kozhi-shchelkovo.html" class="rounded-full bg-[#f2e6de] px-3 py-1">Диагностика кожи</a>
-        <a href="./kombo-uhod-shchelkovo.html" class="rounded-full bg-[#f2e6de] px-3 py-1">Комбо-уход</a>
-      </div>
-      <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <span>© 2026 Кабинет эстетической косметологии «И. Фект»</span>
-        <span>Фаркова Инна Алексеевна</span>
-        <span>Разработка сайта: t.me/chaserjzx1OO</span>
-      </div>
-    </div>
-  </footer>
-
   <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const siteLogo = document.getElementById('siteLogo');
-    const overlay = document.getElementById('pageOverlay');
-    const header = document.getElementById('siteHeader');
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const root = document.documentElement;
+    const canvas = document.getElementById('space');
+    const ctx = canvas.getContext('2d');
+    const panel = document.getElementById('panel');
+    const starsTop = document.getElementById('starsTop');
 
-    if (menuToggle) {
-      menuToggle.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        menuToggle.classList.toggle('is-open');
-      });
-    }
+    let w = canvas.width = window.innerWidth;
+    let h = canvas.height = window.innerHeight;
+    let cx = w / 2;
+    let cy = h / 2;
 
-    if (siteLogo) {
-      siteLogo.addEventListener('click', () => {
-        if (!mobileMenu.classList.contains('hidden')) {
-          mobileMenu.classList.add('hidden');
-          menuToggle.classList.remove('is-open');
-        }
-      });
-    }
-
-    const transitionLinks = document.querySelectorAll('.js-transition');
-    transitionLinks.forEach((link) => {
-      link.addEventListener('click', (event) => {
-        const href = link.getAttribute('href');
-        if (!href || !href.startsWith('#') || prefersReducedMotion) {
-          mobileMenu.classList.add('hidden');
-          menuToggle.classList.remove('is-open');
-          return;
-        }
-        event.preventDefault();
-        const target = document.querySelector(href);
-        if (!target) return;
-        mobileMenu.classList.add('hidden');
-        menuToggle.classList.remove('is-open');
-        overlay.classList.add('is-active');
-        setTimeout(() => {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          history.pushState(null, '', href);
-        }, 180);
-        setTimeout(() => {
-          overlay.classList.remove('is-active');
-        }, 700);
-      });
-    });
-
-    const updateHeaderOffset = () => {
-      if (!header) return;
-      const height = header.offsetHeight || 96;
-      document.documentElement.style.setProperty('--header-offset', `${height}px`);
+    const mouse = {
+      x: w / 2,
+      y: h / 2,
+      tx: w / 2,
+      ty: h / 2,
+      active: false
     };
-    updateHeaderOffset();
-    window.addEventListener('resize', updateHeaderOffset);
 
-    if (!prefersReducedMotion) {
-      const revealItems = document.querySelectorAll('[data-reveal]');
-      const revealObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('reveal-visible');
-              revealObserver.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.2 }
-      );
-      revealItems.forEach((item) => revealObserver.observe(item));
-    } else {
-      document.querySelectorAll('[data-reveal]').forEach((item) => item.classList.add('reveal-visible'));
+    const DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+    function resize() {
+      w = window.innerWidth;
+      h = window.innerHeight;
+      canvas.width = Math.floor(w * DPR);
+      canvas.height = Math.floor(h * DPR);
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      cx = w / 2;
+      cy = h / 2;
+      createStars();
+      createFloaters();
     }
 
-    const beforeAfterBlocks = document.querySelectorAll('[data-before-after]');
-    beforeAfterBlocks.forEach((block) => {
-      const range = block.querySelector('[data-before-after-range]');
-      const overlay = block.querySelector('[data-before-after-overlay]');
-      const handle = block.querySelector('[data-before-after-handle]');
-      const labels = block.querySelectorAll('[data-before-after-label]');
-      if (!range || !overlay || !handle) return;
-      const HIDE_THRESHOLD = 12;
-      const upperThreshold = 100 - HIDE_THRESHOLD;
+    const starCount = () => Math.min(220, Math.max(120, Math.floor((w * h) / 9000)));
+    let stars = [];
+    let floaters = [];
 
-      const update = (value) => {
-        const next = Math.min(100, Math.max(0, Number(value)));
-        block.style.setProperty('--split', `${next}%`);
-        handle.style.left = `${next}%`;
-        labels.forEach((label) => {
-          const isBefore = label.classList.contains('before-after__label--before');
-          const shouldHide = isBefore ? next < HIDE_THRESHOLD : next > upperThreshold;
-          label.classList.toggle('is-hidden', shouldHide);
-        });
-      };
+    function createStars() {
+      stars = Array.from({ length: starCount() }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        z: Math.random() * 1 + 0.2,
+        r: Math.random() * 1.8 + 0.2,
+        speed: Math.random() * 0.35 + 0.03,
+        alpha: Math.random() * 0.65 + 0.2,
+        tw: Math.random() * Math.PI * 2
+      }));
+    }
 
-      update(range.value);
-      range.addEventListener('input', (event) => update(event.target.value));
+    function createFloaters() {
+      floaters = Array.from({ length: 12 }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 2 + 0.6,
+        vx: (Math.random() - 0.5) * 0.16,
+        vy: (Math.random() - 0.5) * 0.16,
+        a: Math.random() * 0.25 + 0.03
+      }));
+    }
+
+    function makeTopStars() {
+      const count = 18;
+      starsTop.innerHTML = '';
+      for (let i = 0; i < count; i++) {
+        const s = document.createElement('span');
+        s.style.left = Math.random() * 100 + '%';
+        s.style.top = Math.random() * 100 + '%';
+        s.style.animationDuration = 2 + Math.random() * 4 + 's';
+        s.style.animationDelay = Math.random() * 3 + 's';
+        s.style.opacity = String(0.35 + Math.random() * 0.65);
+        starsTop.appendChild(s);
+      }
+    }
+
+    function drawBackgroundGlow() {
+      const g1 = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, Math.max(w, h) * 0.42);
+      g1.addColorStop(0, 'rgba(120,180,255,0.10)');
+      g1.addColorStop(0.35, 'rgba(120,180,255,0.05)');
+      g1.addColorStop(1, 'rgba(120,180,255,0)');
+      ctx.fillStyle = g1;
+      ctx.fillRect(0, 0, w, h);
+
+      const g2 = ctx.createRadialGradient(w - mouse.x * 0.5, h - mouse.y * 0.5, 0, w - mouse.x * 0.5, h - mouse.y * 0.5, Math.max(w, h) * 0.46);
+      g2.addColorStop(0, 'rgba(170,120,255,0.08)');
+      g2.addColorStop(0.4, 'rgba(170,120,255,0.04)');
+      g2.addColorStop(1, 'rgba(170,120,255,0)');
+      ctx.fillStyle = g2;
+      ctx.fillRect(0, 0, w, h);
+    }
+
+    function drawStars(t) {
+      for (const s of stars) {
+        s.x -= s.speed * s.z + (mouse.x - cx) * 0.00022 * s.z;
+        s.y += (mouse.y - cy) * 0.00012 * s.z;
+
+        if (s.x < -10) s.x = w + 10;
+        if (s.y < -10) s.y = h + 10;
+        if (s.y > h + 10) s.y = -10;
+
+        const pulse = 0.55 + Math.sin(t * 0.0015 + s.tw) * 0.45;
+        const alpha = s.alpha * pulse;
+
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+        ctx.arc(s.x, s.y, s.r * (0.6 + s.z * 0.65), 0, Math.PI * 2);
+        ctx.fill();
+
+        if (s.r > 1.1) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(160,190,255,${alpha * 0.35})`;
+          ctx.moveTo(s.x - s.r * 4, s.y);
+          ctx.lineTo(s.x + s.r * 4, s.y);
+          ctx.moveTo(s.x, s.y - s.r * 4);
+          ctx.lineTo(s.x, s.y + s.r * 4);
+          ctx.stroke();
+        }
+      }
+    }
+
+    function drawConnections() {
+      for (let i = 0; i < floaters.length; i++) {
+        const a = floaters[i];
+        a.x += a.vx + (mouse.x - cx) * 0.00005;
+        a.y += a.vy + (mouse.y - cy) * 0.00005;
+
+        if (a.x < -20) a.x = w + 20;
+        if (a.x > w + 20) a.x = -20;
+        if (a.y < -20) a.y = h + 20;
+        if (a.y > h + 20) a.y = -20;
+
+        for (let j = i + 1; j < floaters.length; j++) {
+          const b = floaters[j];
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const d = Math.hypot(dx, dy);
+          if (d < 180) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(130,160,255,${(1 - d / 180) * 0.08})`;
+            ctx.lineWidth = 1;
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+
+        const md = Math.hypot(a.x - mouse.x, a.y - mouse.y);
+        if (md < 160) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(190,210,255,${(1 - md / 160) * 0.14})`;
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.stroke();
+        }
+
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(220,235,255,${a.a + 0.2})`;
+        ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function animate(t) {
+      mouse.x += (mouse.tx - mouse.x) * 0.08;
+      mouse.y += (mouse.ty - mouse.y) * 0.08;
+
+      ctx.clearRect(0, 0, w, h);
+      drawBackgroundGlow();
+      drawStars(t);
+      drawConnections();
+
+      requestAnimationFrame(animate);
+    }
+
+    function updateMouseVars(x, y) {
+      const px = (x / window.innerWidth) * 100;
+      const py = (y / window.innerHeight) * 100;
+      root.style.setProperty('--mx', px + '%');
+      root.style.setProperty('--my', py + '%');
+
+      const rx = ((y / window.innerHeight) - 0.5) * -8;
+      const ry = ((x / window.innerWidth) - 0.5) * 10;
+      panel.style.transform = `perspective(1100px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-2px)`;
+      panel.style.boxShadow = `${-ry * 1.1}px ${18 + Math.abs(rx) * 1.4}px 90px rgba(0,0,0,0.45), 0 0 50px rgba(120,180,255,0.12)`;
+    }
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.tx = e.clientX;
+      mouse.ty = e.clientY;
+      mouse.active = true;
+      updateMouseVars(e.clientX, e.clientY);
     });
 
-    const navLinks = document.querySelectorAll('[data-nav]');
-    const sectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const id = entry.target.getAttribute('id');
-          if (!id || !entry.isIntersecting) return;
-          navLinks.forEach((link) => {
-            link.classList.toggle('text-[#2a211b]', link.getAttribute('href') === `#${id}`);
-          });
-        });
-      },
-      { rootMargin: '-40% 0px -55% 0px' }
-    );
-    document.querySelectorAll('section[id]').forEach((section) => sectionObserver.observe(section));
+    window.addEventListener('touchmove', (e) => {
+      const t = e.touches[0];
+      if (!t) return;
+      mouse.tx = t.clientX;
+      mouse.ty = t.clientY;
+      updateMouseVars(t.clientX, t.clientY);
+    }, { passive: true });
+
+    window.addEventListener('mouseleave', () => {
+      mouse.tx = w / 2;
+      mouse.ty = h / 2;
+      updateMouseVars(w / 2, h / 2);
+    });
+
+    window.addEventListener('resize', resize);
+
+    resize();
+    makeTopStars();
+    updateMouseVars(w / 2, h / 2);
+    requestAnimationFrame(animate);
   </script>
 </body>
 </html>
